@@ -1,0 +1,60 @@
+﻿@model IEnumerable<Estoque.Models.Produto>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<style>
+    #grid_estoque > thead > tr th:nth-child(2) {
+        width: 110px;
+    }
+
+    #grid_estoque > thead > tr th:nth-child(3) {
+        width: 110px;
+    }
+
+    #grid_estoque > thead > tr th:nth-child(4) {
+        width: 200px;
+    }
+
+</style>
+<h2>Estoque</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-success" role="button"><i class="glyphicon glyphicon-plus"></i> Adicionar</a>
+</p>
+<table id="grid_estoque"class="table table-bordered table-striped table-hover">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quantidade)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Valor)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantidade)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Valor)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ID"class="btn btn-primary btn-alterar" role="button"><i class="glyphicon glyphicon-pencil"></i> Editar</a> |
+                <a asp-action="Delete" asp-route-id="@item.ID" class="btn btn-danger btn-excluir" role="button"> <i class="glyphicon glyphicon-trash"></i> Deletar</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
